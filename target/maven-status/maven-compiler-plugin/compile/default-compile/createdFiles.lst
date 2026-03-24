@@ -1,3 +1,4 @@
+com\manpower\Application.class
 com\manpower\controller\ManpowerController.class
 com\manpower\service\ManpowerService.class
 com\manpower\entity\Manpower.class
