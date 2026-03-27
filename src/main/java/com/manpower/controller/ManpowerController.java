@@ -16,7 +16,7 @@ public class ManpowerController {
     private ManpowerRepository repository;
 
     // ✅ PUBLIC API (no login)
-    @GetMapping("/public/manpower")
+    @GetMapping("/manpower")
     public List<Manpower> getData() {
         return repository.findAll();
     }
