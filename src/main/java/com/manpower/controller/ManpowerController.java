@@ -1,21 +1,29 @@
-
 package com.manpower.controller;
+
 import com.manpower.entity.Manpower;
-import com.manpower.service.ManpowerService;
+import com.manpower.repository.ManpowerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/manpower")
-//@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/api")
+@CrossOrigin("*")
 public class ManpowerController {
-    private final ManpowerService service;
-    public ManpowerController(ManpowerService service){this.service=service;}
 
-    @PostMapping
-    public Manpower save(@RequestBody Manpower m){return service.save(m);}
+    @Autowired
+    private ManpowerRepository repository;
 
-    @GetMapping
-    public List<Manpower> getAll(){return service.getAll();}
+    // ✅ PUBLIC API (no login)
+    @GetMapping("/public/manpower")
+    public List<Manpower> getData() {
+        return repository.findAll();
+    }
+
+    // ✅ ADMIN API (login required)
+    @PostMapping("/admin/manpower")
+    public Manpower addData(@RequestBody Manpower m) {
+        return repository.save(m);
+    }
 }

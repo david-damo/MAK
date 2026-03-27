@@ -1,5 +1,6 @@
 com\manpower\Application.class
-com\manpower\controller\ManpowerController.class
+com\manpower\config\SecurityConfig.class
 com\manpower\service\ManpowerService.class
+com\manpower\controller\ManpowerController.class
 com\manpower\entity\Manpower.class
 com\manpower\repository\ManpowerRepository.class
