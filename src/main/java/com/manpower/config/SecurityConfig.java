@@ -17,27 +17,22 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // Public APIs
-                .requestMatchers("/api/**").permitAll()
-
-                // Admin APIs
-                .requestMatchers("/api/admin/**").authenticated()
-
+                .requestMatchers("/api/manpower").permitAll()   // public
+                .requestMatchers("/api/admin/**").authenticated() // protected
                 .anyRequest().permitAll()
             )
-            .httpBasic(); // simple login popup
+            .httpBasic(); // simple login (username/password)
 
         return http.build();
     }
 	
 	@Bean
-	public UserDetailsService userDetailsService() {
+	public UserDetailsService users() {
 		return new InMemoryUserDetailsManager(
 			User.withUsername("admin")
-				.password("{noop}admin123")
+				.password("{noop}admin123") // no encoding
 				.roles("ADMIN")
 				.build()
 		);
 	}
 }
-
