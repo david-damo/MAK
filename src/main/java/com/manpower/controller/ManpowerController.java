@@ -4,6 +4,7 @@ import com.manpower.entity.Manpower;
 import com.manpower.repository.ManpowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.time.LocalDate;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class ManpowerController {
     // ✅ ADMIN API (login required)
     @PostMapping("/admin/manpower")
     public Manpower addData(@RequestBody Manpower m) {
+		m.setDate(LocalDate.now());
         return repository.save(m);
     }
 	
