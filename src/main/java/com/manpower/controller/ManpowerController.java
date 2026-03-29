@@ -26,4 +26,9 @@ public class ManpowerController {
     public Manpower addData(@RequestBody Manpower m) {
         return repository.save(m);
     }
+	
+	@GetMapping("/ping")
+	public String ping() {
+		return "ok";
+	}
 }
